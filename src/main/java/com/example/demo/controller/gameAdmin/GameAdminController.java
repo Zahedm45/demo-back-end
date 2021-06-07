@@ -22,12 +22,12 @@ public class GameAdminController {
 
    public GameAdminController(IGameAdminService gameAdminService) {
       this.gameAdminService = gameAdminService;
+
    }
 
    @GetMapping("/game")
    public ResponseEntity<List<Game>> getGames() throws  MappingException, DaoException, ServiceException {
       List<Game> games = gameAdminService.getGames();
-
       return new ResponseEntity<>(games, HttpStatus.OK);
    }
 
