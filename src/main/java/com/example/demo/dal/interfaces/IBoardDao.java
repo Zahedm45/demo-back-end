@@ -3,6 +3,7 @@ package com.example.demo.dal.interfaces;
 import com.example.demo.exceptions.DaoException;
 import com.example.demo.model.Board;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -15,5 +16,5 @@ public interface IBoardDao {
 
     void deleteBoard(int boardId) throws DaoException;
 
-    List<Board> getBoards() throws DaoException;
+    Collection<Board> getBoards() throws DaoException;
 }

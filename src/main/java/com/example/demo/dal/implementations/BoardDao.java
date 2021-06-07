@@ -4,6 +4,7 @@ import com.example.demo.model.Board;
 import org.springframework.stereotype.Repository;
 import com.example.demo.dal.interfaces.IBoardDao;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class BoardDao implements IBoardDao {
 
 
     @Override
-    public List<Board> getBoards() throws DaoException {
-        return (List<Board>) boards.values();
+    public Collection<Board> getBoards() throws DaoException {
+        return boards.values();
     }
 }
