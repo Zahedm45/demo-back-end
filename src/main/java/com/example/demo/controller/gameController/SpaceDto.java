@@ -1,4 +1,4 @@
-package com.example.demo.controller.GameController;
+package com.example.demo.controller.gameController;
 
 public class SpaceDto {
     private int x;

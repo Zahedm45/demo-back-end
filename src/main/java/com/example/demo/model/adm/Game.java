@@ -3,7 +3,7 @@ package com.example.demo.model.adm;
 import java.util.ArrayList;
 import java.util.List;
 
-public class game {
+public class Game {
     public String name;
     public int id;
     public boolean started;

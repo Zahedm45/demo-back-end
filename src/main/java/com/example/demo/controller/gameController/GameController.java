@@ -1,4 +1,4 @@
-package com.example.demo.controller.GameController;
+package com.example.demo.controller.gameController;
 
 import com.example.demo.exceptions.DaoException;
 import com.example.demo.exceptions.MappingException;
@@ -23,6 +23,18 @@ public class GameController {
         this.dtoMapper = dtoMapper;
     }
 
+//    @GetMapping("/games")
+//    public ResponseEntity<GameDto> getGames(@PathVariable("boardId") int boardId) throws ServiceException, MappingException, DaoException {
+//        Board board = gameService.getBoard(boardId);
+//        return new ResponseEntity<>(dtoMapper.convertToDto(board), HttpStatus.OK);
+//    }
+
+
+
+
+
+
+
     /**
      * Endpoint for getting board information
      * @param boardId the id of the board we want to get
@@ -33,6 +45,7 @@ public class GameController {
         Board board = gameService.getBoard(boardId);
         return new ResponseEntity<>(dtoMapper.convertToDto(board), HttpStatus.OK);
     }
+
 
 
     /**
