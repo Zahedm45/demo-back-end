@@ -30,30 +30,6 @@ public class GameService implements IGameService {
     }
 
 
-//    @Override
-//    public List<Game> getGames() throws ServiceException, DaoException {
-//        List<Game> result = new ArrayList<>();
-//
-//        for (Board board : boardDao.getBoards()) {
-//            Game game = new Game();
-//            game.name = board.boardName;
-//            game.id = board.getGameId();
-//            result.add(game);
-//
-//            int amountOfPlayers = board.getPlayersNumber();
-//            game.started = amountOfPlayers > 1;
-//            for (int i = 0; i < amountOfPlayers; i++) {
-//                Player player = board.getPlayer(i);
-//                User user = new User();
-//                user.playerId = player.getPlayerId();
-//                user.playerName = player.getName();
-//                game.users.add(user);
-//
-//            }
-//
-//        }
-//        return result;
-//    }
 
     @Override
     public Board getBoard(int boardId) throws ServiceException, DaoException {

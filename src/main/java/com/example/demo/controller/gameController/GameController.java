@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
+
 public class GameController {
     private final IGameService gameService;
     private final IDtoMapper dtoMapper;
@@ -21,6 +22,8 @@ public class GameController {
     public GameController(IGameService gameService, IDtoMapper dtoMapper) {
         this.gameService = gameService;
         this.dtoMapper = dtoMapper;
+
+
     }
 
 //    @GetMapping("/games")
@@ -31,6 +34,21 @@ public class GameController {
 
 
 
+//    private void addGames() {
+//        BoardDto boardDto1 = new BoardDto();
+//        //BoardDto boardDto2 = new BoardDto();
+//        boardDto1.setBoardId(2);
+//        try {
+//            createBoard(boardDto1);
+//        } catch (ServiceException e) {
+//            e.printStackTrace();
+//        } catch (DaoException e) {
+//            e.printStackTrace();
+//        }
+//
+//        addPlayer(2)
+//
+//    }
 
 
 
