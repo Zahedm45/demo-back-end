@@ -100,6 +100,30 @@ public class GameController {
      */
     @PostMapping("/board")
     public ResponseEntity<Integer> createBoard(@RequestBody BoardDto boardDTO) throws ServiceException, DaoException {
+//        int x = boardDTO.getWidth();
+//        int y = boardDTO.getHeight();
+//        System.out.println(x);
+//        System.out.println(y);
+//        SpaceDto[][] spaces  = new SpaceDto[x][y];
+//
+//
+//
+//
+//        for (int i = 0; i < spaces.length; i++) {
+//            for (int j = 0; j < spaces[0].length; j++) {
+//                SpaceDto space = new SpaceDto();
+//                space.setX(i);
+//                space.setY(j);
+//                space.setPlayerId(null);
+//
+//                spaces[i][j] = space;
+//            }
+//
+//        }
+
+        //boardDTO.setSpaceDtos(spaces);
+
+
         Board board = dtoMapper.convertToEntity(boardDTO);
         int boardId = gameService.saveBoard(board);
         return new ResponseEntity<>(boardId, HttpStatus.CREATED);
