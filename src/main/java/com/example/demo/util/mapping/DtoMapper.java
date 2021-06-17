@@ -17,6 +17,8 @@ public class DtoMapper implements IDtoMapper {
 
 
     private IGameDAO gameDAO;
+    int num = 0;
+
 
     public DtoMapper(IGameDAO gameDAO) {
         this.gameDAO = gameDAO;
@@ -107,7 +109,36 @@ public class DtoMapper implements IDtoMapper {
             throw new MappingException("Board was null when trying to convert PlayerDto to Player");
         }
         if (playerDto.getPlayerId() == null) { //If we have not provided a player id, we are creating a new player
-            return new Player(board, playerDto.getPlayerColor(), playerDto.getPlayerName());
+
+            num = board.getPlayersNumber();
+            if (board.getPlayersNumber() >=6) {
+                throw new MappingException("This board has already 6 players.");
+
+            }
+            if (playerDto.getPlayerName() == null) {
+                playerDto.setPlayerName("player"+(num+1));
+            }
+
+            String[] color = {"red", "yellow", "green", "blue", "pink", "orange"};
+
+            if (playerDto.getPlayerColor() == null) {
+                playerDto.setPlayerColor(color[num]);
+            }
+
+            if (playerDto.getX() == null && playerDto.getY() == null) {
+                int n = (num / board.width);
+
+                playerDto.setX(n);
+                playerDto.setY(num % board.width);
+                //System.out.println(num % board.height);
+            }
+
+            num++;
+
+            Player player = new Player(board, playerDto.getPlayerColor(), playerDto.getPlayerName());
+            Space space = new Space(board, playerDto.getX(), playerDto.getY());
+            player.setSpace(space);
+            return player;
         }
         return null;
     }

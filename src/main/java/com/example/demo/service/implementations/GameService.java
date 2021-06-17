@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -141,6 +142,11 @@ public class GameService implements IGameService {
         int nextPlayerNumber = (currentPlayerNumber + 1) % amountOfPlayers;
         board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
         boardDao.updateBoard(board, board.getGameId());
+    }
+
+    @Override
+    public Collection<Board> getBoard() throws ServiceException, DaoException {
+        return boardDao.getBoards();
     }
 
 

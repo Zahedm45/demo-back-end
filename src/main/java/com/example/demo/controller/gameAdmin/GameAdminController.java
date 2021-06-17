@@ -31,6 +31,7 @@ public class GameAdminController {
 
    }
 
+   ///______________________ casted
    @GetMapping("/game")
    public ResponseEntity<Collection<Game>> getGames() throws  MappingException, DaoException, ServiceException {
       Collection<Game> games =  gameAdminService.getGames();

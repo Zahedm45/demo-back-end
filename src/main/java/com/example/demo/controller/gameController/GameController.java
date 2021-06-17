@@ -6,11 +6,14 @@ import com.example.demo.exceptions.ServiceException;
 import com.example.demo.model.Board;
 import com.example.demo.model.Player;
 import com.example.demo.model.Space;
+import com.example.demo.model.adm.Game;
 import com.example.demo.service.interfaces.IGameService;
 import com.example.demo.util.mapping.IDtoMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -87,8 +90,16 @@ public class GameController {
     @PostMapping("/board/{boardId}/player")
     public ResponseEntity<Integer> addPlayer(@PathVariable("boardId") int boardId, @RequestBody PlayerDto playerDto) throws ServiceException, MappingException, DaoException {
         Board board = gameService.getBoard(boardId);
+
         Player player = dtoMapper.convertToEntity(playerDto, board);
+
+
+
+
+
         int playerId = gameService.addPlayer(boardId, player);
+        board.getSpace(playerDto.getX(), playerDto.getY()).setPlayer(player);
+        gameService.setCurrentPlayer(boardId, playerId);
         return new ResponseEntity<>(playerId, HttpStatus.CREATED);
     }
 
@@ -100,29 +111,6 @@ public class GameController {
      */
     @PostMapping("/board")
     public ResponseEntity<Integer> createBoard(@RequestBody BoardDto boardDTO) throws ServiceException, DaoException {
-//        int x = boardDTO.getWidth();
-//        int y = boardDTO.getHeight();
-//        System.out.println(x);
-//        System.out.println(y);
-//        SpaceDto[][] spaces  = new SpaceDto[x][y];
-//
-//
-//
-//
-//        for (int i = 0; i < spaces.length; i++) {
-//            for (int j = 0; j < spaces[0].length; j++) {
-//                SpaceDto space = new SpaceDto();
-//                space.setX(i);
-//                space.setY(j);
-//                space.setPlayerId(null);
-//
-//                spaces[i][j] = space;
-//            }
-//
-//        }
-
-        //boardDTO.setSpaceDtos(spaces);
-
 
         Board board = dtoMapper.convertToEntity(boardDTO);
         int boardId = gameService.saveBoard(board);

@@ -6,6 +6,7 @@ import com.example.demo.model.Board;
 import com.example.demo.model.Player;
 import com.example.demo.model.adm.Game;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -26,7 +27,7 @@ public interface IGameService {
 
     void switchCurrentPlayer(int boardId) throws ServiceException, DaoException;
 
-    //List<Game> getGames() throws ServiceException, DaoException;
+    Collection<Board> getBoard() throws ServiceException, DaoException;
 
 
 }
