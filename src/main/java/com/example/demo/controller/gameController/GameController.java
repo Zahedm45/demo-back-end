@@ -112,7 +112,9 @@ public class GameController {
     @PostMapping("/board")
     public ResponseEntity<Integer> createBoard(@RequestBody BoardDto boardDTO) throws ServiceException, DaoException {
 
+
         Board board = dtoMapper.convertToEntity(boardDTO);
+
         int boardId = gameService.saveBoard(board);
         return new ResponseEntity<>(boardId, HttpStatus.CREATED);
     }

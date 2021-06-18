@@ -30,8 +30,32 @@ public class GameAdminService implements IGameAdminService {
     @Override
 
     public Collection<Game> getGames() throws ServiceException, DaoException {
-//        List<Game> result = new ArrayList<>();
-//
+        Collection<Game> result = gameDAO.getGames();
+
+        for (Game game : result) {
+            Board board = boardDao.getBoard(game.id);
+
+            if (board != null && board.getPlayersNumber() != 0) {
+
+                game.users.clear();
+                for (int i = 0; i < board.getPlayersNumber(); i++) {
+
+                    Player player = board.getPlayer(i);
+                    User user = new User();
+                    user.playerName = player.getName();
+                    user.playerId = player.getPlayerId();
+
+                    game.users.add(user);
+
+                }
+
+            }
+
+        }
+
+
+        return result;
+
 //        for (Board board : boardDao.getBoards()) {
 //            Game game = new Game();
 //            game.name = board.boardName;
@@ -50,7 +74,7 @@ public class GameAdminService implements IGameAdminService {
 //            }
 //
 //        }
-        return gameDAO.getGames();
+
     }
 
     @Override

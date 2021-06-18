@@ -89,11 +89,16 @@ public class DtoMapper implements IDtoMapper {
         return spaceDto;
     }
 
+
+
     public Board convertToEntity(BoardDto boardDto) {
         Board board = new Board(boardDto.getWidth(), boardDto.getHeight(), boardDto.getBoardName());
         if (boardDto.getBoardId() != -1) {
             board.setGameId(boardDto.getBoardId());
         }
+
+//        Game game = gameDAO.getGame(boardDto.getBoardId());
+//        game.board = board;
         return board;
     }
 
